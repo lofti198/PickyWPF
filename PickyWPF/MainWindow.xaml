@@ -3,21 +3,32 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:uc="clr-namespace:PickyWPF.Views"
-        xmlns:local="clr-namespace:PickyWPF"
+        xmlns:views="clr-namespace:PickyWPF.Views"
+        xmlns:models="clr-namespace:PickyWPF.Models"
+    xmlns:vm="clr-namespace:PickyWPF.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        
+        Title="MainWindow" Height="450" Width="800"
+        d:DataContext="{d:DesignInstance vm:MainWindowViewModel}"
+        >
     <Grid>
         <!-- Main background layout -->
-        <Border Background="LightGray">
-            <TabControl>
-                <!-- TabItem 1 -->
-                <TabItem Header="Tab 1">
-                    <uc:Browser />
-                </TabItem>
-
-                <!-- Add more TabItems as needed -->
+       
+            <TabControl ItemsSource="{Binding Tabs}">
+                <TabControl.Resources>
+                    <DataTemplate DataType="{x:Type models:BrowserTab}">
+                        <views:BrowserTabView />
+                    </DataTemplate>
+                </TabControl.Resources>
+                <TabControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type models:ITab}">
+                        <TextBlock>
+                        <Run Text="{Binding Name}" />
+                            <Hyperlink Command="{Binding CloseCommand}">X</Hyperlink>
+                        </TextBlock>
+                    </DataTemplate>
+                </TabControl.ItemTemplate>
             </TabControl>
-        </Border>
+    
     </Grid>
 </Window>
