@@ -1,0 +1,23 @@
+﻿<Window x:Class="PickyWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:uc="clr-namespace:PickyWPF.Views"
+        xmlns:local="clr-namespace:PickyWPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <!-- Main background layout -->
+        <Border Background="LightGray">
+            <TabControl>
+                <!-- TabItem 1 -->
+                <TabItem Header="Tab 1">
+                    <uc:Browser />
+                </TabItem>
+
+                <!-- Add more TabItems as needed -->
+            </TabControl>
+        </Border>
+    </Grid>
+</Window>
